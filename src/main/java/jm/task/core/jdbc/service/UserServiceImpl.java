@@ -8,6 +8,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserDaoJDBCImpl userDaoJDBC;
 
+
     public UserServiceImpl() {
         this.userDaoJDBC = new UserDaoJDBCImpl();
     }
