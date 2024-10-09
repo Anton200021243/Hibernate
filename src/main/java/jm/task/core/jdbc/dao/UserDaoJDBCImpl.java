@@ -1,5 +1,6 @@
 package jm.task.core.jdbc.dao;
 
+import jm.task.core.jdbc.Main;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 
@@ -16,7 +17,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-        try (Connection connection = newConnect.getConnection()) {
+        try (Connection connection = newConnect.getJDBCConnection()) {
             Statement statement = connection.createStatement();
 
             String SQL = "create table if not exists User(\n" +
@@ -34,7 +35,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        try (Connection connection = newConnect.getConnection()) {
+        try (Connection connection = newConnect.getJDBCConnection()) {
             Statement statement = connection.createStatement();
 
             String SQL = "drop table if exists User";
@@ -47,7 +48,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        try (Connection connection = newConnect.getConnection()) {
+        try (Connection connection = newConnect.getJDBCConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("insert into User (name, lastName, age) values (?, ?, ?)");
             preparedStatement.setString(1, name);
@@ -64,7 +65,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        try (Connection connection = newConnect.getConnection()) {
+        try (Connection connection = newConnect.getJDBCConnection()) {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("delete from User where id = ?");
             preparedStatement.setLong(1, id);
@@ -79,7 +80,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
 
-        try (Connection connection = newConnect.getConnection()) {
+        try (Connection connection = newConnect.getJDBCConnection()) {
             Statement statement = connection.createStatement();
             String SQL = "select * from User";
             ResultSet resultSet = statement.executeQuery(SQL);
@@ -103,7 +104,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        try (Connection connection = newConnect.getConnection()) {
+        try (Connection connection = newConnect.getJDBCConnection()) {
             Statement statement = connection.createStatement();
             String SQL = "truncate table User";
             statement.execute(SQL);
