@@ -31,39 +31,23 @@ public class Main {
 
         UserService userService = new UserServiceImpl();
 
-//        User user1 = new User("egor", "letov", (byte) 25);
-//        User user2 = new User("max", "korzh", (byte) 32);
-//        User user3 = new User("nilletto", "nilettov", (byte) 54);
-//        User user4 = new User("john", "connor", (byte) 23);
-//
+        User user1 = new User("egor", "letov", (byte) 25);
+        User user2 = new User("max", "korzh", (byte) 32);
+        User user3 = new User("nilletto", "nilettov", (byte) 54);
+        User user4 = new User("john", "connor", (byte) 23);
 //        userService.createUsersTable();
 //
-//        userService.saveUser(user1.getName(), user1.getLastName(), user1.getAge());
-//        userService.saveUser(user2.getName(), user2.getLastName(), user2.getAge());
-//        userService.saveUser(user3.getName(), user3.getLastName(), user3.getAge());
-//        userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
+        userService.saveUser(user1.getName(), user1.getLastName(), user1.getAge());
+        userService.saveUser(user2.getName(), user2.getLastName(), user2.getAge());
+        userService.saveUser(user3.getName(), user3.getLastName(), user3.getAge());
+        userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
+
+        userService.getAllUsers().forEach(System.out::println);
 //
-//        userService.getAllUsers().forEach(System.out::println);
-//
-//        userService.cleanUsersTable();
+        userService.cleanUsersTable();
 //
 //        userService.dropUsersTable();
 
-        Util newSessionFactory = new Util();
-        SessionFactory sessionFactory = newSessionFactory.getSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
-
-        session.beginTransaction();
-
-        User user1 = new User("test1", "t", (byte) 39);
-        User user2 = new User("test2", "e", (byte) 32);
-        User user3 = new User("test3", "s", (byte) 26);
-
-
-
-        session.getTransaction().commit();
-
-        sessionFactory.close();
 
         LOGGER.info("End main method");
     }
