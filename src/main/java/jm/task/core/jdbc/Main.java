@@ -30,7 +30,6 @@ public class Main {
         LOGGER.info("Start main method");
 
         UserService userService = new UserServiceImpl();
-        userService.saveUser("ivan", "ivanov", (byte) 32);
 
 //        User user1 = new User("egor", "letov", (byte) 25);
 //        User user2 = new User("max", "korzh", (byte) 32);
@@ -60,9 +59,7 @@ public class Main {
         User user2 = new User("test2", "e", (byte) 32);
         User user3 = new User("test3", "s", (byte) 26);
 
-        session.save(user1);
-        session.save(user2);
-        session.save(user3);
+
 
         session.getTransaction().commit();
 

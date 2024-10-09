@@ -19,7 +19,9 @@ public class UserDaoHibernateImpl implements UserDao {
         try(SessionFactory sessionFactory = newSessionFactory.getSessionFactory()) {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
-            //code
+
+
+
             session.getTransaction().commit();
         }
     }
@@ -52,7 +54,9 @@ public class UserDaoHibernateImpl implements UserDao {
         try(SessionFactory sessionFactory = newSessionFactory.getSessionFactory()) {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
-            //code
+
+            session.remove(session.get(User.class, id));
+
             session.getTransaction().commit();
         }
     }
